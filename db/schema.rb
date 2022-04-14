@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_133728) do
+ActiveRecord::Schema.define(version: 2022_04_14_144356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2022_04_14_133728) do
   create_table "flats", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "type"
     t.integer "number_of_bathrooms"
     t.integer "number_of_bedrooms"
     t.boolean "wifi"
@@ -38,6 +37,7 @@ ActiveRecord::Schema.define(version: 2022_04_14_133728) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "home_type"
     t.index ["user_id"], name: "index_flats_on_user_id"
   end
 

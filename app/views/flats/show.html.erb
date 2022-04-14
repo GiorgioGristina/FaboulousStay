@@ -1,1 +1,11 @@
 <h1><%= @flat.name %></h1>
+
+<%= link_to 'back to list', flats_path %>
+<%= link_to 'edit', edit_flat_path %>
+<%= link_to 'Delete', flat_path(@flat),  
+                      method: :delete,
+                      data: {confirm: "are you sure?"} %>
+
+
+
+<%#the method to check whic one is the current url: request.original_url   %>
