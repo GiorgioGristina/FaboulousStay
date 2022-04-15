@@ -1,0 +1,12 @@
+<%= simple_form_for(array) do |f| %>
+  <%= f.input :check_in, as: :date, html5: true %>
+  <%= f.input :check_out, as: :date, html5: true %>
+  <%= f.input :number_of_guests, as: :integer %>
+
+  <%= f.hidden_field :total_price, as: :integer %>
+  <%= f.hidden_field :number_of_nights, as: :integer %>
+  
+  
+  <%= f.submit %>
+<% end %>
+
