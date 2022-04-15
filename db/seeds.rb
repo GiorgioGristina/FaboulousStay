@@ -49,8 +49,8 @@ london_address = ['10 Downing Street','3 Pudding Lane','4 Abbey Road','221 B Bak
 address_array =[]
 london_address.each_with_index do |street, i|
  
-  arr =  ['london', 'united kingdom', "#{street}"]
-  address_array[i] = arr
+  address_array.push(['london', 'united kingdom', "#{street}"])
+  
  
 end
 p address_array
