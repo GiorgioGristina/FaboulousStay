@@ -1,11 +1,112 @@
-<h1><%= @flat.name %></h1>
-
-<%= link_to 'back to list', flats_path %>
-<%= link_to 'edit', edit_flat_path %>
-<%= link_to 'Delete', flat_path(@flat),  
-                      method: :delete,
-                      data: {confirm: "are you sure?"} %>
 
 
 
-<%#the method to check whic one is the current url: request.original_url   %>
+.<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-sm-10 ">
+
+      <h1><%= @flat.name %></h1>
+      <div class="row justify-content-center">
+        <div class="col-lg-12  ">
+          
+            <%# <%= cl_image_tag @flat.photo.key, class: "img-show"%> 
+          
+        </div>
+      </div>
+
+      <%= link_to "Delete #{@flat.id}",
+            flat_path(@flat),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+
+      <div class="container-info-reservation-form mt-3 ">
+        <div class="row justify-content-center ">
+          <div class="col-lg-8">
+              <div class="info_flat">
+                <div class="top-info ">
+                  <h3><%= @flat.home_type %> hosted by <%= User.find(@flat.user_id).first_name %></h3>
+                  <ul class="stay-detail">
+                    <li class = 'details'><%= @flat.occupancy %> Guest</li>
+                    <li class = 'details'><%= @flat.number_of_bedrooms %> Bedrooms</li>
+                    <li class = 'details'><%= @flat.number_of_bathrooms %> Bathrooms</li>
+                  </ul>
+                  
+                </div>
+
+                <p class="flat-description"><%= @flat.description %></p>
+
+             
+
+                <table>
+                  <tr>
+                    <td>Air-Conditioner</td>
+                    <td ><i class=' icon fa-solid fa-<%= @flat.aircon ? "check" : "x"  %>'></i></td>
+                    
+                  </tr>
+                  <tr>
+                    <td>Kitchen</td>
+                    <td ><i class=' icon fa-solid fa-<%= @flat.kitchen ? "check" : "x"  %>'></i></td>
+                    
+                  </tr>
+                  <tr>
+                    
+                    <td>Wi-Fi</td>
+                    <td ><i class=' icon fa-solid fa-<%= @flat.wifi ? "check" : "x"  %>'></i></td>
+                  </tr>
+                  <tr>
+                    
+                    <td>TV</td>
+                    <td ><i class=' icon fa-solid fa-<%= @flat.tv ? "check" : "x"  %>'></i></td>
+                  </tr>
+                  <tr>
+                    
+                    <td>Heating</td>
+                    <td ><i class=' icon fa-solid fa-<%= @flat.heating ? "check" : "x"  %>'></i></td>
+                  </tr>
+                  <tr>
+                    
+                    <td>Parking</td>
+                    <td ><i class=' icon fa-solid fa-<%= @flat.parking ? "check" : "x"  %>'></i></td>
+                  </tr>
+                  <tr>
+                    
+                    <td>Hot-tub</td>
+                    <td ><i class=' icon fa-solid fa-<%= @flat.hot_tub ? "check" : "x"  %>'></i></td>
+                  </tr>
+                  <tr>
+                    
+                    <td>Garden</td>
+                    <td ><i class=' icon fa-solid fa-<%= @flat.garden ? "check" : "x"  %>'></i></td>
+                  </tr>
+                </table>
+
+
+                <div style="width: 100%; height: 600px;"
+                  data-controller="mapbox"
+                  data-mapbox-markers-value="<%= @marker.to_json %>"
+                  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+                </div>
+               
+              </div>
+          </div>
+            
+          <div class="col-lg-4 ">
+            <div class = "reservation_form_container ">
+              <%= simple_form_for [ @flat, @booking ] , class:"reservation form" do |f| %>
+                <%= f.input :check_in,  as: :date, html5: true, label_html: {class: "my-3 "}, input_html: {class: "check-in"} %>
+                <%= f.input :check_out,  as: :date, html5: true, label_html: {class: "my-3 " }, input_html: {class: "check-out"} %>
+                <%= f.input :number_of_guests, collection: Array(1..30), prompt: "set number of guest", label_html: {class: "my-3"}, input_html: {class: "guest-number"} %>
+                <%= f.submit class: 'button sub-btn'  %>
+              <% end %>
+              <div class ="container-totprice">
+                <p>total price:</p>
+                <p class= "tot-price"><%= @flat.price_per_night %></p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
