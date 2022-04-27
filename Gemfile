@@ -30,6 +30,8 @@ gem 'devise'
 gem "geocoder"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+#clodinary
+gem "cloudinary"
 
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'

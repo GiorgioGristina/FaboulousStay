@@ -5,6 +5,7 @@
   <%= f.input :occupancy, collection: Array(1..20), prompt: "set max occupancy" %>
   <%= f.input :number_of_bedrooms, collection: Array(1..20), prompt: "set number of bedrooms" %>
   <%= f.input :number_of_bathrooms, collection: Array(1..20), prompt: "set number of bathrooms" %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   
   
   <%= f.input :wifi, as: :boolean %>
